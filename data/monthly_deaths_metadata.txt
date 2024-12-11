@@ -1,0 +1,7 @@
+# Metadata for datafile 'monthly_deaths_data_Jan2010_Dec2023_agg_rr.csv'
+
+Deaths data are based on deaths registered in New Zealand and uses the date that the death occurred. This may differ to other death statistics published by Stats NZ, which is based on date of registration. Details about the concepts related to deaths data can be found at: https://datainfoplus.stats.govt.nz/Item/nz.govt.stats/24c7f58a-7a19-4ac5-b66f-374c563932bf. This data has been rounded in the following way to avoid disclosure:
+- True counts under 6 are randomly rounded to 0, or 6, with the probability of rounding proportional to the distance of the true count to 0, or 6 (i.e., a true count of 5 has a higher chance of being rounded to 6 than 0)
+- Any true counts 6 or above are randomly rounded to base 3. This means that counts are randomly rounded up or down to the nearest value divisible by 3, with the probability proportional to the distance as before. (E.g., A true count of 8 may be rounded to 6 or 9, with a higher chance of being rounded to 9).
+ 
+
