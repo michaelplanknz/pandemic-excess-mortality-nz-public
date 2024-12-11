@@ -1,0 +1,9 @@
+raw_data_unrounded/
+old/
+papers/
+temp/
+manuscript/
+*.docx
+*.asv
+*.mat
+.Rproj.user
