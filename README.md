@@ -2,7 +2,7 @@
 
 This repository contains data and code for estimating excess mortality in Aotearoa New Zealand during the Covid-19 pandemic and should be read in conjunction with the accompanying article "Estimating excess mortality during the Covid-19 pandemic in Aotearoa New Zealand".
 
-A preprint of the article is available at: URL. Results in this version were generated using the version of this repository tagged v1.0.
+A preprint of the article is available [here](https://arxiv.org/abs/2412.08927). Results in this version were generated using the version of this repository tagged v1.0.
 
 ## Abstract
 
