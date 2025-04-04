@@ -9,7 +9,7 @@ lightBlue = [0.7 0.8 0.95];
 
 % Total aggregate deaths
 h = figure(1);
-h.Position = [456   397   654   378];
+h.Position = [   374         124        1288         697];
 [x, y] = getFillArgs(resultsMonthly.Year, resultsMonthly.dCI(:, 1), resultsMonthly.dCI(:, 2));
 fill(x, y, lightBlue, 'LineStyle', 'none' )
 hold on
@@ -23,7 +23,8 @@ saveas(gcf, resultsFolder+"Fig1.png");
 
 
 % SMR plot
-figure(2)
+h = figure(2)
+h.Position = [    560         116        1118         832];
 [x, y] = getFillArgs(resultsYearly.Year, resultsYearly.dStdCI(:, 1), resultsYearly.dStdCI(:, 2));
 fill(x, 1000*y, lightBlue, 'LineStyle', 'none' )
 hold on
@@ -43,7 +44,7 @@ saveas(gcf, resultsFolder+"Fig2.png");
 
 % Excess over time
 h = figure(3);
-h.Position = [       107         459        1154         431];
+h.Position = [           333         378        1349         521];
 tiledlayout(1, 2, "TileSpacing", "compact");
 nexttile;
 plot(covidData.yearly.Year, covidData.yearly.deaths, 'o-')
@@ -129,7 +130,7 @@ end
         
 % Excess by age and sex compared to Covid deaths
 h = figure(4);
-h.Position = [   680   445   721   553];
+h.Position = [    680   241   990   725];
 tiledlayout(2, 2, "TileSpacing", "compact")
 for iYear = 1:nYears
     % OLD PLOT WITH EXPECTED DEATHS OVERLAID ONTO NON COVID DEATHS AND
@@ -189,7 +190,7 @@ saveas(gcf, resultsFolder+"Fig4.png");
         
 % Excess by age and sex compared to Covid deaths - plotted as percentage
 h = figure(44);
-h.Position = [   680   445   721   553];
+h.Position = [      680   241   990   725];
 tiledlayout(2, 2, "TileSpacing", "compact")
 for iYear = 1:nYears
     nexttile;
@@ -235,7 +236,7 @@ saveas(gcf, resultsFolder+"SuppFig1b.png");
 
 
 h = figure(5);
-h.Position = [ 680         609        1087         389];
+h.Position = [         323         382        1246         461];
 tiledlayout(1, 2, "TileSpacing", 'compact')
 nexttile;
 for iYear = 1:nYears
@@ -270,7 +271,7 @@ saveas(gcf, resultsFolder+"SuppFig1.png");
 
 % Plot deaths in 10-year age age groups 
 h = figure(6);
-h.Position = [ 560         292        1010         656];
+h.Position = [      330         187        1240         761];
 tiledlayout(3, 4, "TileSpacing", "compact");
 age10 = 0:10:90;
 nAges = length(age10);
@@ -312,7 +313,8 @@ sgtitle('yearly deaths in 10-year age bands')
 
 
 % Cumulative excess 
-figure(7)
+h = figure(7);
+h.Position = [     330         187        1240         761];
 tPlot = covidData.monthly.Year + (covidData.monthly.month-1)/12;
 hold on
 set(gca, 'ColorOrderIndex', 2)
@@ -336,7 +338,8 @@ grid on
 % Plot raw monthly deaths in some individual strata 
 a = [0, 5, 80:5:95];
 nAges = length(a);
-figure(100);
+h = figure(100);
+h.Position = [     330         187        1240         761];
 tiledlayout(3, 4, "TileSpacing", "compact")
 for iAge = 1:nAges
     nexttile;
