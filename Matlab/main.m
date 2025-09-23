@@ -24,7 +24,7 @@ dataFolder = "../data/";
 resultsFolder = "../results/";
 
 % Data file names
-fNamePop = dataFolder + "infoshare_ERP_quarterly_2018_base.csv";
+fNamePop = dataFolder + "infoshare_ERP_quarterly_2023_base.csv";
 fNameCovidAge = dataFolder + "covid19_deaths_data_by_age.csv";
 fNameCovidSex = dataFolder + "covid19_deaths_data_by_sex.csv";
 
