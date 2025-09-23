@@ -24,7 +24,7 @@ dataFolder = "../data/";
 resultsFolder = "../results/";
 
 % Data file names
-fNamePop = dataFolder + "infoshare_ERP_quarterly_2023_base.csv";
+fNamePop = dataFolder + "infoshare_ERP_quarterly_2018_base.csv";
 fNameCovidAge = dataFolder + "covid19_deaths_data_by_age.csv";
 fNameCovidSex = dataFolder + "covid19_deaths_data_by_sex.csv";
 
@@ -107,6 +107,12 @@ for iScenario = 1:nScenarios
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if plotFlag(iScenario)
         plotGraphs(tbl, resultsYearly, resultsMonthly, results10, resultsClasses, resultsSex, covidData, FIT_TO_YEAR, baselineYears(iScenario), ORIGIN_YEAR, covidAgeBreaks, resultsFolder);
+
+        % Save results10 and resultsYearly tables for reading back in and plotting comparison between ERP 2018 and 2023
+        fileLbl = extractBefore(extractAfter(fNamePop, "quarterly_"), ".csv");
+        fOut = resultsFolder + "results_ERP_" + fileLbl + ".mat";
+        save(fOut, 'results10', 'resultsYearly');
+
     end
 end
 

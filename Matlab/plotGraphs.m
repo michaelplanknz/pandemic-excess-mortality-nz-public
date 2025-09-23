@@ -6,6 +6,7 @@ plotTitles = ["(a)", "(b)", "(c)", "(d)", "(e)", "(f)"];
 
 colOrd =colororder;
 lightBlue = [0.7 0.8 0.95];
+lightRed = [0.95 0.8 0.7];
 
 % Total aggregate deaths
 h = figure(1);
@@ -207,4 +208,45 @@ saveas(gcf, resultsFolder+"SuppFig1.png");
 
 
 
+% Plot expected and actual deaths in 10 year age bands
+ages = 0:10:90;
+nAges = length(ages);
+tRange = [2014, 2023];
+
+h = figure(6);
+h.Position = [95    89   904   879];
+tiledlayout(4, 3, "TileSpacing", "compact");
+for iAge = 1:nAges
+    nexttile;
+    ind = results10.age10 == ages(iAge);
+    [x, y] = getFillArgs(results10.Year(ind), results10.dCI(ind, 1), results10.dCI(ind, 2)); 
+    fill(x, y, lightBlue, 'LineStyle', 'none', 'FaceAlpha', 0.5, 'HandleVisibility', 'off' )
+    hold on
+    plot(results10.Year(ind), results10.dMean(ind), 'b-' )
+    plot(results10.Year(ind), results10.deaths(ind), 'k.' )
+    xline(2019.5, 'k--')
+    xlim(tRange)
+    grid on
+    ylabel('yearly deaths')
+    if iAge < nAges
+        title(sprintf('%i-%i years', ages(iAge), ages(iAge)+9 ))
+    else
+        title('90+ years')
+    end
+end
+nexttile;
+[x, y] = getFillArgs(resultsYearly.Year, resultsYearly.dCI(:, 1), resultsYearly.dCI(:, 2)); 
+fill(x, y, lightBlue, 'LineStyle', 'none', 'FaceAlpha', 0.5, 'HandleVisibility', 'off' )
+hold on
+plot(resultsYearly.Year, resultsYearly.dMean, 'b-' )
+plot(resultsYearly.Year, resultsYearly.deaths, 'k.' )
+xline(2019.5, 'k--')
+xlim(tRange)
+grid on
+ylabel('yearly deaths')
+title('total all ages')
+leg = legend('expected deaths', 'actual deaths');
+leg.Layout.Tile = 12;
+
+drawnow
 
