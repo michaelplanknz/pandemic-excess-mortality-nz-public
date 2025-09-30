@@ -2,7 +2,9 @@
 
 This repository contains data and code for estimating excess mortality in Aotearoa New Zealand during the Covid-19 pandemic and should be read in conjunction with the accompanying article [Estimating excess mortality during the Covid-19 pandemic in Aotearoa New Zealand](https://academic.oup.com/ije/article/54/4/dyaf093/8163015).
 
-A preprint of the article is available [here](https://arxiv.org/abs/2412.08927). Results in the pre-print and the [final published article](https://academic.oup.com/ije/article/54/4/dyaf093/8163015) were generated using the version of this repository tagged v1.0, which is also archived as [Zenodo archive](https://dx.doi.org/10.5281/zenodo.15107131). 
+A preprint of the article is available [here](https://arxiv.org/abs/2412.08927). Results in the pre-print and the [published article](https://academic.oup.com/ije/article/54/4/dyaf093/8163015) were generated using the version of this repository tagged v1.0, which is also archived as [Zenodo archive](https://dx.doi.org/10.5281/zenodo.15107131). 
+
+Results in the addendum were generated using the version of the repository tagged v2.0.
 
 ## Abstract
 
