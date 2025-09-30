@@ -3,6 +3,7 @@ old/
 papers/
 temp/
 manuscript/
+addendum/
 *.docx
 *.asv
 *.mat

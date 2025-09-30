@@ -6,6 +6,7 @@ plotTitles = ["(a)", "(b)", "(c)", "(d)", "(e)", "(f)"];
 
 colOrd =colororder;
 lightBlue = [0.7 0.8 0.95];
+lightRed = [0.95 0.8 0.7];
 
 % Total aggregate deaths
 h = figure(1);
@@ -23,7 +24,7 @@ saveas(gcf, resultsFolder+"Fig1.png");
 
 
 % SMR plot
-h = figure(2)
+h = figure(2);
 h.Position = [    560         116        1118         832];
 [x, y] = getFillArgs(resultsYearly.Year, resultsYearly.dStdCI(:, 1), resultsYearly.dStdCI(:, 2));
 fill(x, 1000*y, lightBlue, 'LineStyle', 'none' )
@@ -133,27 +134,9 @@ h = figure(4);
 h.Position = [    680   241   990   725];
 tiledlayout(2, 2, "TileSpacing", "compact")
 for iYear = 1:nYears
-    % OLD PLOT WITH EXPECTED DEATHS OVERLAID ONTO NON COVID DEATHS AND
-    % COVID DEATHS
-    % nexttile;
-    % negErr = predByAge(:, iYear)-predByAgeLo(:, iYear);
-    % posErr = predByAgeHi(:, iYear)-predByAge(:, iYear);
-    % bar([totDeathsByAge(:, iYear)-covidDeathsByAge(:, iYear), covidDeathsByAge(:, iYear) ], 'stacked')
-    % hold on
-    % errorbar(1:nAges, predByAge(:, iYear), negErr, posErr, 'go')
-    % ylim([0 25000])
-    % ylabel('yearly deaths')
-    % legend('non-Covid', 'Covid', 'expected', 'Location', 'northwest'  )
-    % h = gca;
-    % h.XTickLabels = {'0-59', '60-69', '70-79', '80+'};
-    % grid on
-    % title(plotTitles(2*iYear-1))
-    % xlabel('age (years)')
-
     nexttile;
     negErr = excessByAge(:, iYear)-excessByAgeLo(:, iYear);
     posErr = excessByAgeHi(:, iYear)-excessByAge(:, iYear);
-    %set(gca, 'ColorOrderIndex', 2)
     b = bar(covidDeathsByAge(:, iYear));
     hold on
     errorbar(1:nAges, excessByAge(:, iYear), negErr, posErr, 'o')
@@ -184,50 +167,6 @@ for iYear = 1:nYears
     title(plotTitles(iYear+2)+" "+string(yearsToPlot(iYear)) )
 end
 saveas(gcf, resultsFolder+"Fig4.png");
-
-
-
-        
-% Excess by age and sex compared to Covid deaths - plotted as percentage
-h = figure(44);
-h.Position = [      680   241   990   725];
-tiledlayout(2, 2, "TileSpacing", "compact")
-for iYear = 1:nYears
-    nexttile;
-    negErr = (excessByAge(:, iYear)-excessByAgeLo(:, iYear))./predByAge(:, iYear);
-    posErr = (excessByAgeHi(:, iYear)-excessByAge(:, iYear))./predByAge(:, iYear);
-    %set(gca, 'ColorOrderIndex', 2)
-    b = bar(100*covidDeathsByAge(:, iYear)./predByAge(:, iYear));
-    hold on
-    errorbar(1:nAges, 100*excessByAge(:, iYear)./predByAge(:, iYear), 100*negErr, 100*posErr, 'o')
-    ylim([-5 15])
-    if iYear == 1
-        legend('Covid deaths', 'excess deaths', 'Location', 'northwest'  )
-    end
-    ylabel('yearly deaths as % of expected deaths')
-    h = gca;
-    h.XTickLabels = {'0-59', '60-69', '70-79', '80+'};
-    grid on
-    xlabel('age (years)')
-    title(plotTitles(iYear)+" "+string(yearsToPlot(iYear)) )
-end
-for iYear = 1:nYears
-    nexttile;
-    negErr = (excessBySex(:, iYear)-excessBySexLo(:, iYear))./predBySex(:, iYear);
-    posErr = (excessBySexHi(:, iYear)-excessBySex(:, iYear))./predBySex(:, iYear);
-    %set(gca, 'ColorOrderIndex', 2)
-    b = bar(100*covidDeathsBySex(:, iYear)./predBySex(:, iYear));
-    hold on
-    errorbar(1:nSexes, 100*excessBySex(:, iYear)./predBySex(:, iYear), 100*negErr, 100*posErr, 'o')
-    ylim([0 12])
-    ylabel('yearly deaths as % of expected deaths')
-    h = gca;
-    h.XTickLabels = {'male', 'female'};
-    grid on
-    title(plotTitles(iYear+2)+" "+string(yearsToPlot(iYear)) )
-end
-saveas(gcf, resultsFolder+"SuppFig1b.png");
-
 
 
 
@@ -269,97 +208,45 @@ saveas(gcf, resultsFolder+"SuppFig1.png");
 
 
 
-% Plot deaths in 10-year age age groups 
+% Plot expected and actual deaths in 10 year age bands
+ages = 0:10:90;
+nAges = length(ages);
+tRange = [2014, 2023];
+
 h = figure(6);
-h.Position = [      330         187        1240         761];
-tiledlayout(3, 4, "TileSpacing", "compact");
-age10 = 0:10:90;
-nAges = length(age10);
+h.Position = [95    89   904   879];
+tiledlayout(4, 3, "TileSpacing", "compact");
 for iAge = 1:nAges
     nexttile;
-    inFlag = results10.age10 == age10(iAge);
-    [x, y] = getFillArgs(results10.Year(inFlag), results10.dCI(inFlag, 1), results10.dCI(inFlag, 2) );
-    fill(x, y, lightBlue, 'LineStyle', 'none' )
+    ind = results10.age10 == ages(iAge);
+    [x, y] = getFillArgs(results10.Year(ind), results10.dCI(ind, 1), results10.dCI(ind, 2)); 
+    fill(x, y, lightBlue, 'LineStyle', 'none', 'FaceAlpha', 0.5, 'HandleVisibility', 'off' )
     hold on
-    plot(results10.Year(inFlag), results10.dMean(inFlag), 'b-')
-    plot(results10.Year(inFlag), results10.deaths(inFlag), 'b.')
-    xline(FIT_TO_YEAR+0.5, 'k--');
-    xline(year0-0.5, 'k--');
-    xlim([2010 2023])
-    if age10(iAge) < 90
-        title(sprintf("age %i-%i years", age10(iAge), age10(iAge)+9))
+    plot(results10.Year(ind), results10.dMean(ind), 'b-' )
+    plot(results10.Year(ind), results10.deaths(ind), 'k.' )
+    xline(2019.5, 'k--')
+    xlim(tRange)
+    grid on
+    ylabel('yearly deaths')
+    if iAge < nAges
+        title(sprintf('%i-%i years', ages(iAge), ages(iAge)+9 ))
     else
-        title(sprintf("age 90+ years"))
+        title('90+ years')
     end
-    grid on
 end
-% Plot total aggregate yearly deaths in last tile
 nexttile;
-[x, y] = getFillArgs(resultsYearly.Year, resultsYearly.dCI(:, 1), resultsYearly.dCI(:, 2) );
-fill(x, y, lightBlue, 'LineStyle', 'none' )
+[x, y] = getFillArgs(resultsYearly.Year, resultsYearly.dCI(:, 1), resultsYearly.dCI(:, 2)); 
+fill(x, y, lightBlue, 'LineStyle', 'none', 'FaceAlpha', 0.5, 'HandleVisibility', 'off' )
 hold on
-plot(resultsYearly.Year, resultsYearly.dMean, 'b-')
-plot(resultsYearly.Year, resultsYearly.deaths, 'b.')
-ylabel('number of deaths')
-xline(FIT_TO_YEAR+0.5, 'k--');
-xline(year0-0.5, 'k--');
-xlim([2010 2023])
-title('all ages')
+plot(resultsYearly.Year, resultsYearly.dMean, 'b-' )
+plot(resultsYearly.Year, resultsYearly.deaths, 'k.' )
+xline(2019.5, 'k--')
+xlim(tRange)
 grid on
-sgtitle('yearly deaths in 10-year age bands')
-%saveas(gcf, resultsFolder+"Fig6.png");
+ylabel('yearly deaths')
+title('total all ages')
+leg = legend('expected deaths', 'actual deaths');
+leg.Layout.Tile = 12;
 
-
-
-
-% Cumulative excess 
-h = figure(7);
-h.Position = [     330         187        1240         761];
-tPlot = covidData.monthly.Year + (covidData.monthly.month-1)/12;
-hold on
-set(gca, 'ColorOrderIndex', 2)
-% Note +1/12 in the x-axis so that results for excess up to the end of e.g. Jan 2020 are plotted
-% at t=2020+1/12
-errorbar(resultsMonthly.Year+1/12, resultsMonthly.cumExcess, resultsMonthly.cumExcess-resultsMonthly.cumExcessCI(:, 1), resultsMonthly.cumExcessCI(:, 2)-resultsMonthly.cumExcess, '.-')
-% Note +1 in the x-axis so that results for excess up to the end of e.g. 2020 are plotted
-% at t=2021
-plot(resultsYearly.Year(resultsYearly.Year >= 2019)+1, [0; cumsum(resultsYearly.SMRexcess(resultsYearly.Year >= 2020))], 'o-' )
-xlim([2020 2024])
-ylabel('cumulative deaths')
-yline(0, 'k-');
-legend( 'excess (monthly)', 'excess (SMR-LR)', 'location', 'northwest')
-grid on
-%saveas(gcf, resultsFolder+"Fig7.png");
-
-
-
-
-
-% Plot raw monthly deaths in some individual strata 
-a = [0, 5, 80:5:95];
-nAges = length(a);
-h = figure(100);
-h.Position = [     330         187        1240         761];
-tiledlayout(3, 4, "TileSpacing", "compact")
-for iAge = 1:nAges
-    nexttile;
-    inFlag = tbl.age == a(iAge) & tbl.sex == "male";
-    tPlot = ORIGIN_YEAR + tbl.t(inFlag)/12;
-    plot(tPlot, tbl.deaths(inFlag), '.', tPlot, tbl.dMean(inFlag), 'b-' ,tPlot, tbl.dCI(inFlag, 1), 'b:',tPlot, tbl.dCI(inFlag, 2), 'b:')
-    xline(FIT_TO_YEAR+1, 'k--');
-    xlim([year0, inf])
-    title(sprintf("age %i, M", a(iAge)))
-    grid on
-    nexttile;
-    inFlag = tbl.age == a(iAge) & tbl.sex == "female";
-    plot(tPlot, tbl.deaths(inFlag), '.', tPlot, tbl.dMean(inFlag), 'b-', tPlot, tbl.dCI(inFlag, 1), 'b:', tPlot, tbl.dCI(inFlag, 2), 'b:')
-    xline(FIT_TO_YEAR+1, 'k--');
-    xlim([year0, inf])
-    title(sprintf("age %i, F", a(iAge)))
-    grid on
-end
-sgtitle('raw monthly deaths in selected strata')
-
-
-
+drawnow
 
