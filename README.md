@@ -10,7 +10,7 @@ Results in the pre-print and the [published article](https://academic.oup.com/ij
 
 An [Addendum](https://arxiv.org/abs/2512.02266) to the original article was published in December 2025.
 
-Results in the addendum were generated using the version of the repository tagged v2.0, which is also archived as a [Zenodo archive](https://dx.doi.org/10.5281/zenodo.17665299).
+Results in the addendum were generated using the version of the repository tagged v2.0, which is also archived as a separate [Zenodo archive](https://dx.doi.org/10.5281/zenodo.17665299).
 
 ## Abstract for the Addendum
 
