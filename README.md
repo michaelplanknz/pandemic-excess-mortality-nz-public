@@ -14,7 +14,7 @@ Results in the addendum were generated using the version of the repository tagge
 
 ## Abstract for the Addendum
 
-In our previous article, we estimated excess mortality during in Aotearoa New Zealand for 2020 to 2023. Since our work was published, updated population estimates have been released by Statistics NZ. In this short letter, we provide the results of applying our original model to the new population data. Our updated excess mortality estimate of 2.0% (95% CI [0.5%, 3.3%]) is 1.3 percentage points higher than our original estimate because the new population estimates for the period 2020 to 2023 are smaller, but the main conclusions of our original article still apply.
+In our [previous article](https://academic.oup.com/ije/article/54/4/dyaf093/8163015), we estimated excess mortality during in Aotearoa New Zealand for 2020 to 2023. Since our work was published, updated population estimates have been released by Statistics NZ. In this [short letter](https://arxiv.org/abs/2512.02266), we provide the results of applying our original model to the new population data. Our updated excess mortality estimate of 2.0% (95% CI [0.5%, 3.3%]) is 1.3 percentage points higher than our original estimate because the new population estimates for the period 2020 to 2023 are smaller, but the main conclusions of our original article still apply.
 
 
 ## Abstract for the original article
