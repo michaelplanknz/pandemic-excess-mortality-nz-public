@@ -2,11 +2,22 @@
 
 This repository contains data and code for estimating excess mortality in Aotearoa New Zealand during the Covid-19 pandemic and should be read in conjunction with the accompanying article [Estimating excess mortality during the Covid-19 pandemic in Aotearoa New Zealand](https://academic.oup.com/ije/article/54/4/dyaf093/8163015).
 
-A preprint of the article is available [here](https://arxiv.org/abs/2412.08927). Results in the pre-print and the [published article](https://academic.oup.com/ije/article/54/4/dyaf093/8163015) were generated using the version of this repository tagged v1.0, which is archived as a [Zenodo archive](https://dx.doi.org/10.5281/zenodo.15107131). 
+## Version history
+
+A preprint of the article is available [here](https://arxiv.org/abs/2412.08927). 
+
+Results in the pre-print and the [published article](https://academic.oup.com/ije/article/54/4/dyaf093/8163015) were generated using the version of this repository tagged v1.0, which is archived as a [Zenodo archive](https://dx.doi.org/10.5281/zenodo.15107131). 
+
+An [Addendum](https://arxiv.org/abs/2512.02266) to the original article was published in December 2025.
 
 Results in the addendum were generated using the version of the repository tagged v2.0, which is also archived as a [Zenodo archive](https://dx.doi.org/10.5281/zenodo.17665299).
 
-## Abstract
+## Abstract for the Addendum
+
+In our previous article, we estimated excess mortality during in Aotearoa New Zealand for 2020 to 2023. Since our work was published, updated population estimates have been released by Statistics NZ. In this short letter, we provide the results of applying our original model to the new population data. Our updated excess mortality estimate of 2.0% (95% CI [0.5%, 3.3%]) is 1.3 percentage points higher than our original estimate because the new population estimates for the period 2020 to 2023 are smaller, but the main conclusions of our original article still apply.
+
+
+## Abstract for the original article
 
 **Background.** The excess mortality rate in Aotearoa New Zealand during the Covid-19 pandemic is frequently estimated to be among the lowest in the world. However, to facilitate international comparisons, many of the methods that have been used to estimate excess mortality do not use age-stratified data on deaths and population size, which may compromise their accuracy.
 
