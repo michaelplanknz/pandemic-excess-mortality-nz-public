@@ -8,7 +8,7 @@ A preprint of the article is available [here](https://arxiv.org/abs/2412.08927).
 
 Results in the pre-print and the [published article](https://academic.oup.com/ije/article/54/4/dyaf093/8163015) were generated using the version of this repository tagged v1.0, which is archived as a [Zenodo archive](https://dx.doi.org/10.5281/zenodo.15107131). 
 
-An [Addendum](https://arxiv.org/abs/2512.02266) to the original article was published in December 2025.
+An Addendum to the original article was published in December 2025. The [journal version](https://dx.doi.org/10.1093/ije/dyag008) may be paywalled but there is an [open-access version](https://arxiv.org/abs/2512.02266).  
 
 Results in the addendum were generated using the version of the repository tagged v2.0, which is also archived as a separate [Zenodo archive](https://dx.doi.org/10.5281/zenodo.17665299).
 
